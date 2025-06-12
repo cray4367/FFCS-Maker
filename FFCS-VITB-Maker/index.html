@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <title>FFCS VITB Maker</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <h1 style="font-weight: bold;">Make your Time Table (FFCS)</h1>
+    <div class="top-bar">
+        <a href="https://github.com/craycray13/FFCS-VITB-Maker" target="_blank" class="top-link" id="top-link">⭐ Give a star to this
+      project on GitHub</a>
+        <a href="https://buymeacoffee.com/craycray
+        " target="_blank">
+            <img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg" alt="Buy me a coffee" width="180px" class="coffee-logo">
+        </a>
+    </div>
+    <div>
+        <label for="subjectCount" style="font-size: 1.2rem;">Number of Subjects:</label>
+        <input type="number" id="subjectCount" min="1" max="10" value="5" style="height: 15px; padding: 8px; width: 30px;">
+        <button onclick="generateColorPickers()">Generate Color Pickers</button>
+    </div>
+
+    <p style="font-size: 1.2rem;">Select a colour from the colour pallet bellow:</p>
+    <div id="colorPickers" class="color-picker"></div>
+
+    <table id="timetable">
+        <tr>
+            <th></th>
+            <th>8.30-10.00</th>
+            <th>10.05-11.35</th>
+            <th>11.40-13.10</th>
+            <th>13.15-14.45</th>
+            <th>14.50-16.20</th>
+            <th>16.25-17.55</th>
+            <th>18.00-19.30</th>
+        </tr>
+        <tr>
+            <th>Mon</th>
+            <td id="A11">A11</td>
+            <td id="B11">B11</td>
+            <td id="C11">C11</td>
+            <td id="A21">A21</td>
+            <td id="A14">A14</td>
+            <td id="B21">B21</td>
+            <td id="C21">C21</td>
+        </tr>
+        <tr>
+            <th>Tue</th>
+            <td id="D11">D11</td>
+            <td id="E11">E11</td>
+            <td id="F11">F11</td>
+            <td id="D21">D21</td>
+            <td id="E14">E14</td>
+            <td id="E21">E21</td>
+            <td id="F21">F21</td>
+        </tr>
+        <tr>
+            <th>Wed</th>
+            <td id="A12">A12</td>
+            <td id="B12">B12</td>
+            <td id="C12">C12</td>
+            <td id="A22">A22</td>
+            <td id="B14">B14</td>
+            <td id="B22">B22</td>
+            <td id="A24">A24</td>
+
+        </tr>
+        <tr>
+            <th>Thu</th>
+            <td id="D12">D12</td>
+            <td id="E12">E12</td>
+            <td id="F12">F12</td>
+            <td id="D22">D22</td>
+            <td id="F14">F14</td>
+            <td id="E22">E22</td>
+            <td id="F22">F22</td>
+        </tr>
+        <tr>
+            <th>Fri</th>
+            <td id="A13">A13</td>
+            <td id="B13">B13</td>
+            <td id="C13">C13</td>
+            <td id="A23">A23</td>
+            <td id="C14">C14</td>
+            <td id="B23">B23</td>
+            <td id="B24">B24</td>
+        </tr>
+        <tr>
+            <th>Sat</th>
+            <td id="D13">D13</td>
+            <td id="E13">E13</td>
+            <td id="F13">F13</td>
+            <td id="D23">D23</td>
+            <td id="D14">D14</td>
+            <td id="D24">D24</td>
+            <td id="E23">E23</td>
+        </tr>
+    </table>
+
+    <form id="subjectForm">
+        <input type="text" id="subjectName" placeholder="Subject Name" required style="height: 15px; padding: 8px;">
+        <input type="text" id="facultyName" placeholder="Faculty Name" required style="height: 15px; padding: 8px;"> 
+        <button type="submit">Add Subject</button>
+        <div class="download-format">
+            <label>Select Download Format:</label>
+            <input type="radio" id="downloadPDF" name="downloadFormat" value="pdf" checked>
+            <label for="downloadPDF">PDF</label>
+            <input type="radio" id="downloadJPG" name="downloadFormat" value="jpg">
+            <label for="downloadJPG">JPEG</label>
+        </div>
+        <button id="downloadBtn" type="button" disabled>Download Timetable <i class="fas fa-download"></i></button>
+
+    </form>
+
+    <table id="subjectTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Slot</th>
+                <th>Faculty Name</th>
+                <th>Subject</th>
+                <th>Color</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <footer>
+        <div class="left-section" style="display: flex; align-items: start;">
+            <div>Made with <span class="heart">♥</span> by Cray</div>
+            <br>
+            <div><a href="https://buymeacoffee.com/craycray.cyber" target="_blank">Buy me a coffee</a></div>
+        </div>
+        <div class="right-section">
+            <div class="social-icons" style="display: flex; flex-direction: column; align-items: start; margin: 10px 0;">
+                <a href="https://www.linkedin.com/in/cray/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="icon">/cray</a>
+                <a href="https://github.com/cray" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="icon">/Cray</a>
+                <a href="https://www.instagram.com/cray" target="_blank"><img src="https://i.pinimg.com/originals/7f/7b/87/7f7b872e56430e68d69538b17525c51c.png" alt="Instagram" class="icon">/cray</a>
+                <a href="https://twitter.com/Cray" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="icon">/Cray</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+
+    <script type="text/javascript" src="JS/main.js "></script>
+</body>
+
+</html>
